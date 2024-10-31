@@ -1,26 +1,28 @@
-﻿#pragma once
+#pragma once
 
 #include "SharedMemory.h"
 #include <thread>
 #include <stdint.h>
 #include <pthread.h>
 
-struct BufferStruct
+struct NotifData
 {
-    uint8_t data;
-    bool initiated = false;
+    pthread_cond_t notif;
     pthread_mutex_t mutex;
+    bool initiated = false;
 };
 
-class Buffer
+class Notifer
 {
+
 public:
-    Buffer(){}
+    Notifer() {}
     bool init(int shared_key);
-    void write(uint8_t n_data);
-    uint8_t read();
+
+    void notify();
+    bool wait(double timeout_sec = 0.0);
 
 private:
     SharedMemory sharedMemory;
-    BufferStruct *bufferStruct;
+    NotifData *notifData;
 };

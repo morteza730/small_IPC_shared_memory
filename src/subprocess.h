@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include "SharedMemory.h"
-#include "InterProccessNotifier.h"
+#include "notifier.h"
 #include <memory>
 
 struct Message{

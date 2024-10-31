@@ -1,0 +1,62 @@
+# Ignore the VS Code directory
+.vscode/
+
+# Ignore build directories
+build/
+Build/
+cmake-build-*/
+
+# Ignore CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# Ignore compiled object files, executables, and libraries
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Ignore logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore dependency and generated files
+*.d
+*.dep
+*.h.gch
+
+# Ignore auto-generated files by code editors
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Qt-specific files if using Qt
+*.qmake.stash
+*.qmake.cache
+*.pro.user
+
+# Ignore IDE specific files
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Ignore backup files
+*.bak
+*.tmp
+*.~*
+
+# Ignore other unwanted binaries
+*.elf
+*.map

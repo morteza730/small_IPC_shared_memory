@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(shMem)
 
 include_directories(..)
-set(SHM_SRC_FILES src/SharedMemory.cpp src/InterProccessNotifier.cpp src/Subprocess.cpp)
+set(SHM_SRC_FILES src/SharedMemory.cpp src/notifier.cpp src/subprocess.cpp src/buffer.cpp)
 
 add_executable(m1   src/m1.cpp ${SHM_SRC_FILES})
 add_executable(m2   src/m2.cpp ${SHM_SRC_FILES})
