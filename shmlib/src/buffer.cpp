@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Buffer.h"
+#include "buffer.h"
 
 bool Buffer::init(int shared_key)
 {
@@ -27,14 +27,26 @@ bool Buffer::init(int shared_key)
     return true;
 }
 
-void Buffer::write(uint8_t n_data)
+void Buffer::write(const std::vector<uint8_t> &n_data)
 {
     pthread_mutex_lock(&bufferStruct->mutex);
-    bufferStruct->data = n_data;
+    // bufferStruct->data.resize(n_data.size(),0);
+    for (int i=0;i<32;i++)
+    {
+        bufferStruct->data[i] = n_data[i];
+    }
+    // bufferStruct->data = n_data;
     pthread_mutex_unlock(&bufferStruct->mutex);
 }
 
-uint8_t Buffer::read()
+std::vector<uint8_t> Buffer::read()
 {
-    return bufferStruct->data;
+    // return bufferStruct->data;
+    std::vector<uint8_t> returnValue;
+    returnValue.resize(32);
+    for (int i=0;i<32;i++)
+    {
+        returnValue[i] = bufferStruct->data[i];
+    }
+    return returnValue;
 }

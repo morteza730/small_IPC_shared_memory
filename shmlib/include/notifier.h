@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SharedMemory.h"
+#include "sharedMemory.h"
 #include <thread>
 #include <stdint.h>
 #include <pthread.h>

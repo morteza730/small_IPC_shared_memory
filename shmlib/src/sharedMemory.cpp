@@ -1,4 +1,4 @@
-#include "SharedMemory.h"
+#include "sharedMemory.h"
 
 #include <errno.h>
 #include <iostream>
