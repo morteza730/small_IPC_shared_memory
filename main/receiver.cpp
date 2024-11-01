@@ -11,14 +11,18 @@ using namespace std;
 
 atomic<bool> terminate_flag(false);
 
-void makeDataArray(std::vector<uint8_t> &dataArray)
+void makeDataArray(std::vector<uint8_t> &dataArray, const std::vector<uint8_t> &receivedArray)
 {
     std::vector<uint8_t> id = {0, 0, 2};
-    std::vector<uint8_t> mti = {2, 2, 1, 0};
-    std::vector<uint8_t> trace = {1, 2, 3, 4, 5, 6};
-    std::vector<uint8_t> pan = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     std::vector<uint8_t> d_id = {0, 0, 1};
 
+    std::vector<uint8_t> trace;
+    std::vector<uint8_t> mti;
+    std::vector<uint8_t> pan;
+    trace.assign(receivedArray.begin() + 7, receivedArray.begin() + 7 + 6);
+    mti.assign(receivedArray.begin()+3,receivedArray.begin()+3+4);
+    addToVector<int>(mti,10);
+    pan.assign(receivedArray.begin()+13,receivedArray.begin()+13+16);
     appendArrays(dataArray, id);
     appendArrays(dataArray, mti);
     appendArrays(dataArray, trace);
@@ -51,7 +55,7 @@ int main()
                 cout << static_cast<int>(valueBack[i]);
             }
             cout << std::endl;
-            makeDataArray(data);
+            makeDataArray(data,valueBack);
             buffer.write(data);
             std::cout << "2: sent value is: " << std::endl;
             for (int i = 0; i < 32; i++)

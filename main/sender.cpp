@@ -27,7 +27,6 @@ void makeDataArray(std::vector<uint8_t> &dataArray, const std::vector<uint8_t> &
 
 int main()
 {
-
     std::vector<uint8_t> data = {};
 
     Notifer buffLck;
