@@ -1,7 +1,6 @@
 #include "notifier.h"
 #include <iostream>
 
-
 // ======================================================= INIT =======================================================
 bool Notifer::init(int shared_key)
 {
@@ -36,13 +35,23 @@ bool Notifer::init(int shared_key)
 
 void Notifer::notify()
 {
+    if (!notifData || !notifData->initiated)
+    {
+        std::cerr << "Notifier not initialized!\n";
+        return;
+    }
     pthread_mutex_lock(&notifData->mutex);
-    pthread_cond_broadcast(&notifData->notif); 
+    pthread_cond_broadcast(&notifData->notif);
     pthread_mutex_unlock(&notifData->mutex);
 }
 
-bool Notifer::wait(double timeout_sec)
+bool Notifer::wait()
 {
+    if (!notifData || !notifData->initiated)
+    {
+        std::cerr << "Notifier not initialized!\n";
+        return false;
+    }
     pthread_mutex_lock(&notifData->mutex);
     pthread_cond_wait(&notifData->notif, &notifData->mutex);
     pthread_mutex_unlock(&notifData->mutex);

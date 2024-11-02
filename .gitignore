@@ -60,3 +60,7 @@ Thumbs.db
 # Ignore other unwanted binaries
 *.elf
 *.map
+
+# Ignore doxyfiles
+Doxyfile/*
+Doxyfile

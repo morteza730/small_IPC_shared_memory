@@ -6,10 +6,15 @@
 #include <unistd.h>
 #include <vector>
 #include "utility.h"
+#include <signal.h>
 
 using namespace std;
 
 atomic<bool> terminate_flag(false);
+
+void signalHandler(int signum) {
+    terminate_flag = true;
+}
 
 void makeDataArray(std::vector<uint8_t> &dataArray, const std::vector<uint8_t> &trace)
 {
@@ -17,6 +22,8 @@ void makeDataArray(std::vector<uint8_t> &dataArray, const std::vector<uint8_t> &
     std::vector<uint8_t> mti = {2, 2, 0, 0};
     std::vector<uint8_t> pan = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     std::vector<uint8_t> d_id = {0, 0, 2};
+
+    dataArray.clear();
 
     appendArrays(dataArray, id);
     appendArrays(dataArray, mti);
@@ -27,6 +34,8 @@ void makeDataArray(std::vector<uint8_t> &dataArray, const std::vector<uint8_t> &
 
 int main()
 {
+    signal(SIGTERM, signalHandler);
+
     std::vector<uint8_t> data = {};
 
     Notifer buffLck;
@@ -67,25 +76,4 @@ int main()
             cout << std::endl;
         }
     }
-
-    // std::cout << "please enter a value>> " << endl;
-    // do
-    // {
-    //     cin >> value;
-    //     if (cin)
-    //     {
-    //         std::cout << id << ":sent value is: " << value[0] << std::endl;
-    //         buffer.write(value[0]);
-    //         buffLck.notify();
-    //     }
-    //     else
-    //     {
-    //         cin.clear();
-    //         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    //     }
-    //     if (buffLck.wait())
-    //     {
-    //         std::cout << id << ": received value is: " << buffer.read() << std::endl;
-    //     }
-    // } while (cin);
 }

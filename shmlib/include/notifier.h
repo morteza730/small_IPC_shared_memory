@@ -18,9 +18,8 @@ class Notifer
 public:
     Notifer() {}
     bool init(int shared_key);
-
     void notify();
-    bool wait(double timeout_sec = 0.0);
+    bool wait();
 
 private:
     SharedMemory sharedMemory;
