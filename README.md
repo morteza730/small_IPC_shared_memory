@@ -23,9 +23,24 @@ This project is a C++ application that demonstrates the use of shared memory for
 - The project uses CMake for building and managing dependencies. It includes configurations for building the shared library, executables, and tests, as well as generating Doxygen documentation.
 
 ## Getting Started
-To get started with this project, follow these steps:
+
+### Prerequisites
+- Ensure you have CMake installed. You can download it from [cmake.org](https://cmake.org/download/).
+- Ensure you have a C++ compiler installed, such as GCC or Clang.
+
+## Clone the Repository
+```sh
+   git clone https://github.com/morteza730/small_IPC_shared_memory.git
+   cd small_IPC_shared_memory
+
+### Build the Project
 
 1. **Clone the repository**:
-   ```sh
+```sh
+   git clone https://github.com/morteza730/small_IPC_shared_memory.git
+   cd small_IPC_shared_memory
+
+1. **Clone the repository**:
+```sh
    git clone https://github.com/morteza730/small_IPC_shared_memory.git
    cd small_IPC_shared_memory
