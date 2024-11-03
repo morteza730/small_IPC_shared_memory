@@ -19,6 +19,8 @@ if(DOXYGEN_FOUND)
         VERBATIM)
 endif()
 
+enable_testing()
+
 add_subdirectory(shmlib)
 add_subdirectory(supervisor)
 add_subdirectory(tests)
