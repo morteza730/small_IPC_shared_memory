@@ -1,10 +1,13 @@
+/**
+ * @file notifier.cpp
+ * @brief Implementation of the Notifer class.
+ */
+
 #include "notifier.h"
 #include <iostream>
 
-// ======================================================= INIT =======================================================
 bool Notifer::init(int shared_key)
 {
-
     bool first_module = sharedMemory.init((void **)&notifData, shared_key, sizeof(NotifData));
     if (first_module)
     {

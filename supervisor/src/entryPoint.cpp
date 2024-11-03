@@ -1,3 +1,8 @@
+/**
+ * @file entryPoint.cpp
+ * @brief Entry point for the application.
+ */
+
 #include <iostream>
 #include <unistd.h>
 #include <sys/wait.h>
@@ -5,6 +10,10 @@
 
 pid_t pid1, pid2;
 
+/**
+ * @brief Signal handler to terminate child processes.
+ * @param signum Signal number.
+ */
 void signalHandler(int signum) {
     if (pid1 > 0) {
         kill(pid1, SIGTERM);

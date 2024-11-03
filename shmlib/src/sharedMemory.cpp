@@ -1,3 +1,8 @@
+/**
+ * @file sharedMemory.cpp
+ * @brief Implementation of the SharedMemory class.
+ */
+
 #include "sharedMemory.h"
 
 #include <errno.h>
@@ -6,10 +11,8 @@
 #include <sys/ipc.h>
 #include <sys/types.h>
 
-// ------------------------------ init memory ------------------------------
 bool SharedMemory::init(void **memPtr, int key, size_t size)
 {
-
     if (!allocate(key, size))
     {
         perror("allocation error!\n");

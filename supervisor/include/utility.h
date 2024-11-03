@@ -1,11 +1,27 @@
+/**
+ * @file utility.h
+ * @brief Utility functions for the project.
+ */
+
 #include <vector>
 
+/**
+ * @brief Append one array to another.
+ * @tparam T Type of the elements in the arrays.
+ * @param targetArray The array to which elements will be appended.
+ * @param arrayToAppend The array whose elements will be appended.
+ */
 template <typename T>
 void appendArrays(std::vector<T> &targetArray, const std::vector<T> &arrayToAppend)
 {
     targetArray.insert(targetArray.end(), arrayToAppend.begin(), arrayToAppend.end());
 }
 
+/**
+ * @brief Get user input as an array of integers.
+ * @tparam T Type of the elements in the array. Must be an integral type.
+ * @return The array of integers entered by the user.
+ */
 template <typename T>
 std::vector<T> getUserInput()
 {
@@ -29,6 +45,12 @@ std::vector<T> getUserInput()
     return userArray;
 }
 
+/**
+ * @brief Add a value to the last element of a vector and handle carry.
+ * @tparam T Type of the elements in the vector. Must be an integral type.
+ * @param vec The vector to which the value will be added.
+ * @param addValue The value to add.
+ */
 template <typename T>
 void addToVector(std::vector<uint8_t> &vec, T addValue)
 {

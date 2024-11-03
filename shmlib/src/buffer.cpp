@@ -1,3 +1,8 @@
+/**
+ * @file buffer.cpp
+ * @brief Implementation of the Buffer class.
+ */
+
 #include <iostream>
 #include "buffer.h"
 

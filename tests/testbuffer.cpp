@@ -1,3 +1,8 @@
+/**
+ * @file testBuffer.cpp
+ * @brief Unit tests for the Buffer class.
+ */
+
 #include <gtest/gtest.h>
 #include "buffer.h"
 

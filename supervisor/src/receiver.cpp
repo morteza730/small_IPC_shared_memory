@@ -1,3 +1,8 @@
+/**
+ * @file receiver.cpp
+ * @brief Implementation of the Receiver application.
+ */
+
 #include <atomic>
 #include <iostream>
 #include <unistd.h>
@@ -14,24 +19,28 @@ using namespace std;
 
 atomic<bool> terminate_flag(false);
 
+/**
+ * @brief Signal handler to set the terminate flag.
+ * @param signum Signal number.
+ */
 void signalHandler(int signum) {
     terminate_flag = true;
 }
 
+/**
+ * @brief Make the data array from received data.
+ * @param dataArray The array to be populated.
+ * @param receivedArray The received data.
+ */
 void makeDataArray(std::vector<uint8_t> &dataArray, const std::vector<uint8_t> &receivedArray)
 {
-    // Define the fixed parts of the data array
     std::vector<uint8_t> id = {0, 0, 2};
     std::vector<uint8_t> d_id = {0, 0, 1};
-    // Extract the trace, mti, and pan from the received array
     std::vector<uint8_t> trace(receivedArray.begin() + 7, receivedArray.begin() + 7 + 6);
     std::vector<uint8_t> mti(receivedArray.begin() + 3, receivedArray.begin() + 3 + 4);
     std::vector<uint8_t> pan(receivedArray.begin() + 13, receivedArray.begin() + 13 + 16);
-    // Modify the mti by adding 10
     addToVector<int>(mti, 10);
-    // Clear the data array to ensure it's empty before appending
     dataArray.clear();
-    // Append the fixed parts and the extracted parts to the data array
     appendArrays(dataArray, id);
     appendArrays(dataArray, mti);
     appendArrays(dataArray, trace);
@@ -66,7 +75,6 @@ int main()
                 cout << static_cast<int>(valueBack[i]);
             }
             cout << std::endl;
-            // a pause to let sender get into wainitng mode.
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             makeDataArray(data,valueBack);
             buffer.write(data);

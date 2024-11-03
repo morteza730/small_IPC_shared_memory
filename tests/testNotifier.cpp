@@ -1,3 +1,8 @@
+/**
+ * @file testNotifier.cpp
+ * @brief Unit tests for the Notifer class.
+ */
+
 #include <gtest/gtest.h>
 #include "notifier.h"
 #include <thread>

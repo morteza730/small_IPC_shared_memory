@@ -1,3 +1,8 @@
+/**
+ * @file sender.cpp
+ * @brief Implementation of the Sender application.
+ */
+
 #include <atomic>
 #include "sharedMemory.h"
 #include "notifier.h"
@@ -12,10 +17,19 @@ using namespace std;
 
 atomic<bool> terminate_flag(false);
 
+/**
+ * @brief Signal handler to set the terminate flag.
+ * @param signum Signal number.
+ */
 void signalHandler(int signum) {
     terminate_flag = true;
 }
 
+/**
+ * @brief Make the data array from trace data.
+ * @param dataArray The array to be populated.
+ * @param trace The trace data.
+ */
 void makeDataArray(std::vector<uint8_t> &dataArray, const std::vector<uint8_t> &trace)
 {
     std::vector<uint8_t> id = {0, 0, 1};
